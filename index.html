@@ -1,0 +1,625 @@
+
+
+
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anil Multi Service - Premium Interior Design & Construction</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.5/flowbite.min.css" rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.5/flowbite.min.js"></script>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css" />
+    <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/ScrollTrigger.min.js"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: {"50":"#f0f9ff","100":"#e0f2fe","200":"#bae6fd","300":"#7dd3fc","400":"#38bdf8","500":"#0ea5e9","600":"#0284c7","700":"#0369a1","800":"#075985","900":"#0c4a6e"},
+                        secondary: {"50":"#f8fafc","100":"#f1f5f9","200":"#e2e8f0","300":"#cbd5e1","400":"#94a3b8","500":"#64748b","600":"#475569","700":"#334155","800":"#1e293b","900":"#0f172a"}
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        @keyframes slideInFromLeft { from { transform: translateX(-100%); } to { transform: translateX(0); } }
+        @keyframes slideInFromRight { from { transform: translateX(100%); } to { transform: translateX(0); } }
+        @keyframes slideInFromTop { from { transform: translateY(-100%); } to { transform: translateY(0); } }
+        .animate-fadeIn { animation: fadeIn 1s ease-out; }
+        .animate-slideInFromLeft { animation: slideInFromLeft 1s ease-out; }
+        .animate-slideInFromRight { animation: slideInFromRight 1s ease-out; }
+        .animate-slideInFromTop { animation: slideInFromTop 0.5s ease-out; }
+        .hide-scroll-bar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        .hide-scroll-bar::-webkit-scrollbar {
+            display: none;
+        }
+        .swiper-pagination-bullet-active {
+            background-color: #0ea5e9 !important;
+        }
+        .floating {
+            animation: floating 3s ease-in-out infinite;
+        }
+        @keyframes floating {
+            0% { transform: translate(0,  0px); }
+            50%  { transform: translate(0, 15px); }
+            100%   { transform: translate(0, -0px); }   
+        }
+        .rotate {
+            animation: rotate 10s linear infinite;
+        }
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        .pulse {
+            animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: .5; }
+        }
+        .decorative-image {
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            object-fit: cover;
+            border-radius: 50%;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .service-card {
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+        }
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        .testimonial-card {
+            transition: transform 0.3s ease-in-out;
+        }
+        .testimonial-card:hover {
+            transform: scale(1.05);
+        }
+        .portfolio-item::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,0.7) 100%);
+            opacity: 0;
+            transition: opacity 0.3s ease-in-out;
+        }
+        .portfolio-item:hover::after {
+            opacity: 1;
+        }
+        .team-member-card {
+            overflow: hidden;
+        }
+        .team-member-card img {
+            transition: transform 0.3s ease-in-out;
+        }
+        .team-member-card:hover img {
+            transform: scale(1.1);
+        }
+    </style>
+</head>
+<!-- <body class="bg-secondary-100 text-secondary-900">
+    <div id="loader" class="fixed inset-0 z-50 flex items-center justify-center bg-primary-900">
+        <div class="animate-spin rounded-full h-32 w-32 border-t-2 border-b-2 border-white"></div>
+    </div> -->
+
+    <!-- Navigation -->
+    <nav class="bg-primary-800 text-white fixed w-full z-20 top-0 left-0 border-b border-primary-600">
+        <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
+            <a href="#" class="flex items-center">
+                <span class="self-center text-2xl font-semibold whitespace-nowrap">Anil Multi Service</span>
+            </a>
+            <div class="flex md:order-2">
+                <a href="#contact" class="text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-4 py-2 text-center mr-3 md:mr-0">Get started</a>
+                <button data-collapse-toggle="navbar-sticky" type="button" class="inline-flex items-center p-2 text-sm text-white rounded-lg md:hidden hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-primary-300" aria-controls="navbar-sticky" aria-expanded="false">
+                    <span class="sr-only">Open main menu</span>
+                    <svg class="w-6 h-6" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clip-rule="evenodd"></path></svg>
+                </button>
+            </div>
+            <div class="items-center justify-between hidden w-full md:flex md:w-auto md:order-1" id="navbar-sticky">
+                <ul class="flex flex-col p-4 md:p-0 mt-4 font-medium border border-primary-700 rounded-lg bg-primary-800 md:flex-row md:space-x-8 md:mt-0 md:border-0 md:bg-transparent">
+                    <li><a href="#home" class="block py-2 pl-3 pr-4 text-white rounded hover:bg-primary-700 md:hover:bg-transparent md:hover:text-primary-300 md:p-0">Home</a></li>
+                    <li><a href="#services" class="block py-2 pl-3 pr-4 text-white rounded hover:bg-primary-700 md:hover:bg-transparent md:hover:text-primary-300 md:p-0">Services</a></li>
+                    <li><a href="#portfolio" class="block py-2 pl-3 pr-4 text-white rounded hover:bg-primary-700 md:hover:bg-transparent md:hover:text-primary-300 md:p-0">Portfolio</a></li>
+                    <li><a href="#about" class="block py-2 pl-3 pr-4 text-white rounded hover:bg-primary-700 md:hover:bg-transparent md:hover:text-primary-300 md:p-0">About</a></li>
+                    <li><a href="#contact" class="block py-2 pl-3 pr-4 text-white rounded hover:bg-primary-700 md:hover:bg-transparent md:hover:text-primary-300 md:p-0">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="relative bg-cover bg-center min-h-screen flex items-center" style="background-image: url('https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');">
+        <div class="absolute inset-0 bg-black opacity-50"></div>
+        <div class="relative z-10 max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h1 class="text-4xl sm:text-5xl md:text-6xl font-extrabold text-white mb-4 animate-fadeIn" data-aos="fade-down">Transform Your Space with Anil Multi Service</h1>
+            <p class="text-xl sm:text-2xl md:text-3xl text-white mb-8 animate-fadeIn" data-aos="fade-up" data-aos-delay="200">Expert home interior design and construction services</p>
+            <div class="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-4">
+                <a href="#services" class="inline-flex items-center justify-center px-5 py-3 text-base font-medium text-center text-white bg-primary-600 rounded-lg hover:bg-primary-700 focus:ring-4 focus:ring-primary-300 animate-fadeIn" data-aos="fade-right" data-aos-delay="400">
+                    Our Services
+                </a>
+                <a href="#portfolio" class="inline-flex items-center justify-center px-5 py-3 text-base font-medium text-center text-white border border-white rounded-lg hover:bg-white hover:text-primary-600 focus:ring-4 focus:ring-primary-300 animate-fadeIn" data-aos="fade-left" data-aos-delay="400">
+                    View Portfolio
+                </a>
+            </div>
+        </div>
+        <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2">
+            <a href="#services" class="text-white animate-bounce">
+                <i class="fas fa-chevron-down text-4xl"></i>
+            </a>
+        </div>
+        <!-- Decorative images -->
+        <img src="https://images.unsplash.com/photo-1616046229478-9901c5536a45?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=80" alt="" class="decorative-image top-20 left-10 rotate">
+        <img src="https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=80" alt="" class="decorative-image top-40 right-20 floating">
+        <img src="https://images.unsplash.com/photo-1616047006789-b7af5afb8c20?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=80" alt="" class="decorative-image bottom-20 left-20 pulse">
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="bg-white py-24 relative overflow-hidden">
+        <div class="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="lg:text-center mb-16" data-aos="fade-up">
+                <h2 class="text-base text-primary-600 font-semibold tracking-wide uppercase">Our Services</h2>
+                <p class="mt-2 text-4xl leading-8 font-extrabold tracking-tight text-secondary-900 sm:text-5xl">
+                    Comprehensive Interior Solutions
+                </p>
+                <p class="mt-4 max-w-2xl text-xl text-secondary-500 lg:mx-auto">
+                    Explore our wide range of services tailored to meet your unique needs.
+                </p>
+            </div>
+
+            <div class="space-y-8">
+                <div class="service-row overflow-x-auto pb-4" data-aos="fade-right">
+                    <div class="inline-flex space-x-6">
+                        <!-- Service 1: Acrylic Kitchen -->
+                        <div class="w-72 flex-shrink-0 bg-white rounded-xl shadow-lg overflow-hidden service-card">
+                            <img src="https://th.bing.com/th/id/R.45635bf1abb6cc330531ffce9f46ad37?rik=u3u5yHbC%2bymm%2fw&riu=http%3a%2f%2fwww.oppeingroup.com.au%2fwp-content%2fuploads%2f2018%2f12%2fModern-Elegant-Acrylic-Kitchen-Cabinet-OP15-A01-2-1.jpg&ehk=tYhjzLPHanTlirsHD0G49X64ONvUVwl7Sd%2bZGIu3RBY%3d&risl=&pid=ImgRaw&r=0" alt="Acrylic Kitchen" class="w-full h-48 object-cover">
+                            <div class="p-4">
+                                <h3 class="text-lg font-semibold text-primary-600">Acrylic Kitchen</h3>
+                                <p class="text-sm text-secondary-500">Modern and sleek kitchen designs with acrylic finishes.</p>
+                            </div>
+                        </div>
+                        <!-- Service 2: Luxury Washroom -->
+                        <div class="w-72 flex-shrink-0 bg-white rounded-xl shadow-lg overflow-hidden service-card">
+                            <img src="https://th.bing.com/th/id/OIP.YSFkl-nMnMN8BTzhzXjBjQHaGK?rs=1&pid=ImgDetMain" alt="Luxury Washroom" class="w-full h-48 object-cover">
+                            <div class="p-4">
+                                <h3 class="text-lg font-semibold text-primary-600">Luxury Washroom</h3>
+                                <p class="text-sm text-secondary-500">Elegant and functional washroom designs.</p>
+                            </div>
+                        </div>
+                        <!-- Service 3: L-Shape Kitchen -->
+                        <div class="w-72 flex-shrink-0 bg-white rounded-xl shadow-lg overflow-hidden service-card">
+                            <img src="https://ksassets.timeincuk.net/wp/uploads/sites/56/2014/02/LO2947KH-004_25570232_138889862.jpg" alt="L-Shape Kitchen" class="w-full h-48 object-cover">
+                            <div class="p-4">
+                                <h3 class="text-lg font-semibold text-primary-600">L-Shape Kitchen</h3>
+                                <p class="text-sm text-secondary-500">Efficient L-shaped kitchen layouts for optimal space utilization.</p>
+                            </div>
+                        </div>
+                        <!-- Service 4: U-Shape Kitchen -->
+                        <div class="w-72 flex-shrink-0 bg-white rounded-xl shadow-lg overflow-hidden service-card">
+                            <img src="https://th.bing.com/th/id/R.6f187cdf227c7fad1e6bb30a7485f2c9?rik=YeWGmJGJWdfPiQ&riu=http%3a%2f%2fcdn.home-designing.com%2fwp-content%2fuploads%2f2018%2f07%2fu-shaped-kitchen-layout-1.jpg&ehk=uado82hpN56JNleERfiburRox1%2buLpdEqTlHN00%2fJA0%3d&risl=&pid=ImgRaw&r=0" alt="U-Shape Kitchen" class="w-full h-48 object-cover">
+                            <div class="p-4">
+                                <h3 class="text-lg font-semibold text-primary-600">U-Shape Kitchen</h3>
+                                <p class="text-sm text-secondary-500">Versatile U-shaped kitchen designs for maximum functionality.</p>
+                            </div>
+                        </div>
+                        <!-- Add more services here -->
+                    </div>
+                </div>
+                <div class="service-row overflow-x-auto pb-4" data-aos="fade-left">
+                    <div class="inline-flex space-x-6">
+                        <!-- Service 5: Modular Wardrobe -->
+                        <div class="w-72 flex-shrink-0 bg-white rounded-xl shadow-lg overflow-hidden service-card">
+                            <img src="https://images.woodenstreet.de/image/data/spacewood/kosmo-universal-2-door-sliding-wardrobe-in-natural-teak-finish/1.jpg" alt="Modular Wardrobe" class="w-full h-48 object-cover">
+                            <div class="p-4">
+                                <h3 class="text-lg font-semibold text-primary-600">Modular Wardrobe</h3>
+                                <p class="text-sm text-secondary-500">Custom-designed wardrobes for organized storage solutions.</p>
+                            </div>
+                        </div>
+                        <!-- Service 6: Home Office -->
+                        <div class="w-72 flex-shrink-0 bg-white rounded-xl shadow-lg overflow-hidden service-card">
+                            <img src="https://i.pinimg.com/originals/c8/c8/94/c8c89484dda46c7f50b3bfeab2e30972.jpg" alt="Home Office" class="w-full h-48 object-cover">
+                            <div class="p-4">
+                                <h3 class="text-lg font-semibold text-primary-600">Home Office</h3>
+                                <p class="text-sm text-secondary-500">Productive and stylish home office setups.</p>
+                            </div>
+                        </div>
+                        <!-- Service 7: Living Room Design -->
+                        <div class="w-72 flex-shrink-0 bg-white rounded-xl shadow-lg overflow-hidden service-card">
+                            <img src="https://th.bing.com/th/id/OIP.-1-PcY2jhF74MvZK4xctRwHaE8?rs=1&pid=ImgDetMain" alt="Living Room Design" class="w-full h-48 object-cover">
+                            <div class="p-4">
+                                <h3 class="text-lg font-semibold text-primary-600">Living Room Design</h3>
+                                <p class="text-sm text-secondary-500">Cozy and inviting living room interiors.</p>
+                            </div>
+                        </div>
+                        <!-- Service 8: Bedroom Makeover -->
+                        <div class="w-72 flex-shrink-0 bg-white rounded-xl shadow-lg overflow-hidden service-card">
+                            <img src="https://www.thespruce.com/thmb/rTwTmEXOLhoRXniZEq_nrJtYioU=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/stunning-bedroom-4-588feaf43df78caebc597c43.jpg" alt="Bedroom Makeover" class="w-full h-48 object-cover">
+                            <div class="p-4">
+                                <h3 class="text-lg font-semibold text-primary-600">Bedroom Makeover</h3>
+                                <p class="text-sm text-secondary-500">Tranquil and personalized bedroom designs.</p>
+                            </div>
+                        </div>
+                        <!-- Add more services here -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="bg-secondary-100 py-24 relative">
+        <div class="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="lg:text-center mb-16" data-aos="fade-up">
+                <h2 class="text-base text-primary-600 font-semibold tracking-wide uppercase">Testimonials</h2>
+                <p class="mt-2 text-4xl leading-8 font-extrabold tracking-tight text-secondary-900 sm:text-5xl">
+                    What Our Clients Say
+                </p>
+            </div>
+            <div class="swiper testimonialSwiper" data-aos="fade-up">
+                <div class="swiper-wrapper">
+                    <!-- Testimonial 1 -->
+                    <div class="swiper-slide">
+                        <div class="bg-white rounded-xl shadow-lg p-8 testimonial-card">
+                            <div class="flex items-center mb-4">
+                                <img src="https://randomuser.me/api/portraits/men/1.jpg" alt="Client" class="w-16 h-16 rounded-full mr-4">
+                                <div>
+                                    <h4 class="text-xl font-semibold">Rajesh Kumar</h4>
+                                    <p class="text-secondary-500">Homeowner</p>
+                                </div>
+                            </div>
+                            <p class="text-secondary-600 italic">"Anil Multi Service transformed our outdated living room into a modern, stylish space. Their attention to detail and innovative designs exceeded our expectations. Highly recommended!"</p>
+                        </div>
+                    </div>
+                    <!-- Testimonial 2 -->
+                    <div class="swiper-slide">
+                        <div class="bg-white rounded-xl shadow-lg p-8 testimonial-card">
+                            <div class="flex items-center mb-4">
+                                <img src="https://randomuser.me/api/portraits/women/2.jpg" alt="Client" class="w-16 h-16 rounded-full mr-4">
+                                <div>
+                                    <h4 class="text-xl font-semibold">Priya Sharma</h4>
+                                    <p class="text-secondary-500">Business Owner</p>
+                                </div>
+                            </div>
+                            <p class="text-secondary-600 italic">"We hired Anil Multi Service for our office renovation, and the results were outstanding. They created a productive and inspiring workspace that our employees love. Great job!"</p>
+                        </div>
+                    </div>
+                    <!-- Testimonial 3 -->
+                    <div class="swiper-slide">
+                        <div class="bg-white rounded-xl shadow-lg p-8 testimonial-card">
+                            <div class="flex items-center mb-4">
+                                <img src="https://randomuser.me/api/portraits/men/3.jpg" alt="Client" class="w-16 h-16 rounded-full mr-4">
+                                <div>
+                                    <h4 class="text-xl font-semibold">Vikram Singh</h4>
+                                    <p class="text-secondary-500">Architect</p>
+                                </div>
+                            </div>
+                            <p class="text-secondary-600 italic">"As an architect, I've worked with many interior design firms, but Anil Multi Service stands out. Their creativity, professionalism, and ability to bring concepts to life are truly impressive."</p>
+                        </div>
+                    </div>
+                    <!-- Add more testimonials here -->
+                </div>
+                <div class="swiper-pagination mt-8"></div>
+            </div>
+        </div>
+        <!-- Decorative elements -->
+        <img src="https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=80" alt="" class="decorative-image top-10 left-10 rotate">
+        <img src="https://images.unsplash.com/photo-1616047006789-b7af5afb8c20?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=80" alt="" class="decorative-image bottom-10 right-10 floating">
+    </section>
+
+    <!-- Portfolio Section -->
+    <section id="portfolio" class="bg-white py-24 relative">
+        <div class="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="lg:text-center mb-16" data-aos="fade-up">
+                <h2 class="text-base text-primary-600 font-semibold tracking-wide uppercase">Our Portfolio</h2>
+                <p class="mt-2 text-4xl leading-8 font-extrabold tracking-tight text-secondary-900 sm:text-5xl">
+                    Masterpieces of Design
+                </p>
+                <p class="mt-4 max-w-2xl text-xl text-secondary-500 lg:mx-auto">
+                    Explore our most innovative and complex projects that push the boundaries of interior design.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Project 1: Futuristic Smart Apartment -->
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden group portfolio-item" data-aos="fade-up">
+                    <div class="relative">
+                        <img src="https://images.unsplash.com/photo-1518780664697-55e3ad937233?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1165&q=80" alt="Futuristic Smart Apartment" class="w-full h-80 object-cover transition-transform duration-300 group-hover:scale-110">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black to-transparent opacity-0 group-hover:opacity-70 transition-opacity duration-300"></div>
+                        <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                            <a href="#" class="text-white text-lg font-semibold bg-primary-600 px-6 py-3 rounded-lg hover:bg-primary-700 transition duration-300">View Project</a>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-2xl font-semibold text-secondary-900 mb-2">Futuristic Smart Apartment</h3>
+                        <p class="text-secondary-600">A cutting-edge smart home with integrated IoT devices, voice-controlled systems, and energy-efficient design.</p>
+                    </div>
+                </div>
+
+                <!-- Project 2: Eco-Luxury Villa -->
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden group portfolio-item" data-aos="fade-up" data-aos-delay="100">
+                    <div class="relative">
+                        <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Eco-Luxury Villa" class="w-full h-80 object-cover transition-transform duration-300 group-hover:scale-110">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black to-transparent opacity-0 group-hover:opacity-70 transition-opacity duration-300"></div>
+                        <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                            <a href="#" class="text-white text-lg font-semibold bg-primary-600 px-6 py-3 rounded-lg hover:bg-primary-700 transition duration-300">View Project</a>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-2xl font-semibold text-secondary-900 mb-2">Eco-Luxury Villa</h3>
+                        <p class="text-secondary-600">A sustainable luxury villa featuring solar panels, rainwater harvesting, and eco-friendly materials without compromising on elegance.</p>
+                    </div>
+                </div>
+
+                <!-- Project 3: Multi-Functional Studio Loft -->
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden group portfolio-item" data-aos="fade-up" data-aos-delay="200">
+                    <div class="relative">
+                        <img src="https://images.unsplash.com/photo-1519710164239-da123dc03ef4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Multi-Functional Studio Loft" class="w-full h-80 object-cover transition-transform duration-300 group-hover:scale-110">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black to-transparent opacity-0 group-hover:opacity-70 transition-opacity duration-300"></div>
+                        <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                            <a href="#" class="text-white text-lg font-semibold bg-primary-600 px-6 py-3 rounded-lg hover:bg-primary-700 transition duration-300">View Project</a>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-2xl font-semibold text-secondary-900 mb-2">Multi-Functional Studio Loft</h3>
+                        <p class="text-secondary-600">A versatile studio loft that seamlessly transitions from a cozy living space to a vibrant entertainment hub.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Decorative elements -->
+        <div class="absolute top-0 right-0 w-32 h-32 bg-yellow-100 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob"></div>
+        <div class="absolute bottom-0 left-0 w-32 h-32 bg-green-100 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-2000"></div>
+    </section>
+
+    <!-- Process Section -->
+    <section id="process" class="bg-secondary-100 py-24">
+        <div class="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="lg:text-center mb-16" data-aos="fade-up">
+                <h2 class="text-base text-primary-600 font-semibold tracking-wide uppercase">Our Process</h2>
+                <p class="mt-2 text-4xl leading-8 font-extrabold tracking-tight text-secondary-900 sm:text-5xl">
+                    How We Bring Your Vision to Life
+                </p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Step 1 -->
+                <div class="bg-white rounded-xl shadow-lg p-6 text-center" data-aos="fade-up">
+                    <div class="text-primary-600 text-4xl mb-4">
+                        <i class="fas fa-lightbulb"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">1. Consultation</h3>
+                    <p class="text-secondary-600">We start with a detailed consultation to understand your vision, needs, and budget.</p>
+                </div>
+                <!-- Step 2 -->
+                <div class="bg-white rounded-xl shadow-lg p-6 text-center" data-aos="fade-up" data-aos-delay="100">
+                    <div class="text-primary-600 text-4xl mb-4">
+                        <i class="fas fa-pencil-ruler"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">2. Design</h3>
+                    <p class="text-secondary-600">Our expert designers create a custom plan tailored to your specifications.</p>
+                </div>
+                <!-- Step 3 -->
+                <div class="bg-white rounded-xl shadow-lg p-6 text-center" data-aos="fade-up" data-aos-delay="200">
+                    <div class="text-primary-600 text-4xl mb-4">
+                        <i class="fas fa-hammer"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">3. Construction</h3>
+                    <p class="text-secondary-600">Our skilled team brings the design to life with precision and care.</p>
+                </div>
+                <!-- Step 4 -->
+                <div class="bg-white rounded-xl shadow-lg p-6 text-center" data-aos="fade-up" data-aos-delay="300">
+                    <div class="text-primary-600 text-4xl mb-4">
+                        <i class="fas fa-check-circle"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">4. Completion</h3>
+                    <p class="text-secondary-600">We ensure every detail is perfect before handing over your transformed space.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="bg-white py-24">
+        <div class="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="lg:text-center mb-16" data-aos="fade-up">
+                <h2 class="text-base text-primary-600 font-semibold tracking-wide uppercase">About Us</h2>
+                <p class="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-secondary-900 sm:text-4xl">
+                    Your Trusted Partner in Interior Design & Construction
+                </p>
+                <p class="mt-4 max-w-2xl text-xl text-secondary-500 lg:mx-auto">
+                    At Anil Multi Service, we specialize in creating stunning interior designs and executing high-quality construction projects.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-16">
+                <div class="animate-slideInFromLeft">
+                    <h3 class="text-2xl font-semibold text-secondary-900 mb-4">Our Mission</h3>
+                    <p class="text-secondary-500 mb-4">Our mission is to transform your living spaces into beautiful, functional, and sustainable environments that reflect your unique style and needs.</p>
+                    <p class="text-secondary-500 mb-4">We believe that every project is an opportunity to create a lasting impact on our clients' lives and the environment.</p>
+                </div>
+                <div class="animate-slideInFromRight">
+                    <h3 class="text-2xl font-semibold text-secondary-900 mb-4">Our Approach</h3>
+                    <p class="text-secondary-500 mb-4">We take a collaborative and client-centric approach to every project, working closely with our clients to understand their vision, preferences, and requirements.</p>
+                    <p class="text-secondary-500 mb-4">Our team of experienced designers and construction professionals bring creativity, expertise, and attention to detail to every project, ensuring that the final result exceeds expectations.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team Section -->
+    <section id="team" class="bg-secondary-100 py-24">
+        <div class="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="lg:text-center mb-16" data-aos="fade-up">
+                <h2 class="text-base text-primary-600 font-semibold tracking-wide uppercase">Our Team</h2>
+                <p class="mt-2 text-4xl leading-8 font-extrabold tracking-tight text-secondary-900 sm:text-5xl">
+                    Meet the Experts Behind Our Success
+                </p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Team Member 1 -->
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden team-member-card" data-aos="fade-up">
+                    <img src="https://randomuser.me/api/portraits/women/65.jpg" alt="Preeti Arora" class="w-full h-64 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-2">Preeti Arora</h3>
+                        <p class="text-secondary-600 mb-4">Founder</p>
+                        <div class="flex space-x-4">
+                            <a href="#" class="text-primary-600 hover:text-primary-800"><i class="fab fa-linkedin"></i></a>
+                            <a href="#" class="text-primary-600 hover:text-primary-800"><i class="fab fa-twitter"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Team Member 2 -->
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden team-member-card" data-aos="fade-up" data-aos-delay="100">
+                    <img src="https://randomuser.me/api/portraits/men/67.jpg" alt="Amit Arora" class="w-full h-64 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-2">Amit Arora</h3>
+                        <p class="text-secondary-600 mb-4">Manager</p>
+                        <div class="flex space-x-4">
+                            <a href="#" class="text-primary-600 hover:text-primary-800"><i class="fab fa-linkedin"></i></a>
+                            <a href="#" class="text-primary-600 hover:text-primary-800"><i class="fab fa-twitter"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Team Member 3 -->
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden team-member-card" data-aos="fade-up" data-aos-delay="200">
+                    <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Anil Arora" class="w-full h-64 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-2">Anil Arora</h3>
+                        <p class="text-secondary-600 mb-4">CEO</p>
+                        <div class="flex space-x-4">
+                            <a href="#" class="text-primary-600 hover:text-primary-800"><i class="fab fa-linkedin"></i></a>
+                            <a href="#" class="text-primary-600 hover:text-primary-800"><i class="fab fa-twitter"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="bg-white py-24">
+        <div class="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="lg:text-center mb-16" data-aos="fade-up">
+                <h2 class="text-base text-primary-600 font-semibold tracking-wide uppercase">Contact Us</h2>
+                <p class="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-secondary-900 sm:text-4xl">
+                    Let's Discuss Your Project
+                </p>
+                <p class="mt-4 max-w-2xl text-xl text-secondary-500 lg:mx-auto">
+                    Whether you're interested in our services or have any questions, we'd love to hear from you.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-16">
+                <div class="animate-slideInFromLeft">
+                    <h3 class="text-2xl font-semibold text-secondary-900 mb-4">Get in Touch</h3>
+                    <p class="text-secondary-500 mb-4">Feel free to reach out to us using the contact information below:</p>
+                    <ul class="text-secondary-500 mb-4">
+                        <li><strong>Email:</strong>  anilmultiservice.com</li>
+                        <li><strong>Phone:</strong> +91 9250005522,9250004422</li>
+                        <li><strong>Address:</strong> jagatpuri, Delhi, India</li>
+                    </ul>
+                    <p class="text-secondary-500 mb-4">You can also follow us on social media for updates and inspiration:</p>
+                    <ul class="text-secondary-500 mb-4">
+                        <li><a href="#" class="text-primary-600 hover:text-primary-800 font-semibold">Facebook</a></li>
+                        <li><a href="#" class="text-primary-600 hover:text-primary-800 font-semibold">Instagram</a></li>
+                        <li><a href="#" class="text-primary-600 hover:text-primary-800 font-semibold">Twitter</a></li>
+                    </ul>
+                </div>
+                <div class="animate-slideInFromRight">
+                    <h3 class="text-2xl font-semibold text-secondary-900 mb-4">Send us a Message</h3>
+                    <form class="space-y-4">
+                        <div>
+                            <label for="name" class="block text-sm font-medium text-secondary-700">Name</label>
+                            <input type="text" id="name" name="name" class="mt-1 block w-full px-3 py-2 border border-secondary-300 rounded-md shadow-sm focus:outline-none focus:ring-primary-500 focus:border-primary-500" required>
+                        </div>
+                        <div>
+                            <label for="email" class="block text-sm font-medium text-secondary-700">Email</label>
+                            <input type="email" id="email" name="email" class="mt-1 block w-full px-3 py-2 border border-secondary-300 rounded-md shadow-sm focus:outline-none focus:ring-primary-500 focus:border-primary-500" required>
+                        </div>
+                        <div>
+                            <label for="message" class="block text-sm font-medium text-secondary-700">Message</label>
+                            <textarea id="message" name="message" rows="4" class="mt-1 block w-full px-3 py-2 border border-secondary-300 rounded-md shadow-sm focus:outline-none focus:ring-primary-500 focus:border-primary-500" required></textarea>
+                        </div>
+                        <div>
+                            <button type="submit" class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-primary-600 hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500">
+                                Send Message
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-primary-800 text-white py-8">
+        <div class="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="text-center md:text-left mb-4 md:mb-0">
+                    <a href="#" class="text-2xl font-semibold whitespace-nowrap">Anil Multi Service</a>
+                </div>
+                <div class="flex space-x-4">
+                    <a href="#" class="text-white hover:text-primary-300"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="text-white hover:text-primary-300"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="text-white hover:text-primary-300"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="text-white hover:text-primary-300"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+            <div class="mt-8 text-center md:text-left">
+                <p class="text-sm">&copy; 2023 Anil Multi Service. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Initialize AOS, Swiper, and handle loading animation -->
+    <script>
+        AOS.init({
+            duration: 1000,
+            once: true,
+        });
+
+        new Swiper('.testimonialSwiper', {
+            slidesPerView: 1,
+            spaceBetween: 30,
+            pagination: {
+                el: '.swiper-pagination',
+                clickable: true,
+            },
+            breakpoints: {
+                640: {
+                    slidesPerView: 2,
+                },
+                1024: {
+                    slidesPerView: 3,
+                },
+            },
+        });
+
+        window.addEventListener('load', () => {
+            const loader = document.getElementById('loader');
+            setTimeout(() => {
+                loader.classList.add('hidden');
+            }, 1000);
+        });
+    </script>
+</body>
+</html>
